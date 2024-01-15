@@ -367,3 +367,83 @@ print(precision <- tp/(tp+fp))
 F1 <- 2*recall*precision/(recall+precision)
 print(F1)
 
+
+
+
+
+
+
+
+
+#AUPR
+AUC1 <- c(0.879,
+          0.878,
+          0.882,
+          0.877,
+          0.874,
+          0.874,
+          0.877,
+          0.880,
+          0.877,
+          0.768
+          
+)
+
+AUC1 <- c(0.6483,0.6632,0.6277,0.6632,0.6815,0.6726,0.6815,0.6726,0.6668,0.6483)
+
+AUC2 <- c(0.6462,0.6306,0.6377,0.6829,0.6547,0.6155,0.6128,0.6472,0.6476,0.6372)
+AUC3 <- c(0.6142,0.6771,0.6114,0.6293,0.6763,0.6317,0.5924,0.6671,0.6987,0.638)
+AUC4 <- c(0.6339,0.6149,0.6578,0.5974,0.6717,0.6311,0.5899,0.6138,0.5594,0.5876)
+AUC <- c(AUC1, AUC2, AUC3, AUC4)
+
+
+types <- c(rep('5%',10),rep('10%',10),
+           rep('15%',10),rep('20%',10))
+
+data <- data.frame(AUC = AUC, types = types)
+
+data$types <- factor(data$types,
+                     levels =c('5%','10%',
+                               '15%','20%') )
+
+library(ggplot2)
+ggplot(data=data, aes(x=types,y=AUC, fill = types)) +
+  stat_boxplot(geom = 'errorbar', width = 0.2)+
+  geom_boxplot() +
+  geom_hline(yintercept=0.7373, colour="red", linetype="dashed", size = 1)+
+  xlab('Removal data')+
+  scale_y_continuous(breaks = seq(0,1, by = 0.02))+
+  theme(axis.title.x =element_text(size=12), axis.title.y=element_text(size=12))+
+  theme(axis.text.x =element_text(size=12,angle = 45, hjust = 0.5, vjust = 0.5), axis.text.y=element_text(size=12))
+
+
+
+#precision
+Pre1 <- c(0.82,0.92,0.78,0.86,0.84,0.82,0.84,0.82,0.84,0.82)
+
+Pre1 <- c(0.82,0.86,0.78,0.86,0.84,0.82,0.84,0.82,0.84,0.82)
+
+Pre2 <- c(0.82,0.8,0.84,0.86,0.84,0.8,0.84,0.8,0.76,0.8)
+Pre3 <- c(0.8,0.86,0.8,0.78,0.82,0.78,0.76,0.84,0.84,0.8)
+Pre4 <- c(0.8,0.82,0.8,0.76,0.78,0.78,0.82,0.84,0.68,0.76)
+Precision <- c(Pre1, Pre2, Pre3, Pre4)
+
+
+types <- c(rep('5%',10),rep('10%',10),
+           rep('15%',10),rep('20%',10))
+
+data <- data.frame(Precision = Precision, types = types)
+
+data$types <- factor(data$types,
+                     levels =c('5%','10%',
+                               '15%','20%') )
+
+library(ggplot2)
+ggplot(data=data, aes(x=types,y=Precision, fill = types)) +
+  stat_boxplot(geom = 'errorbar', width = 0.2)+
+  geom_boxplot() +
+  geom_hline(yintercept=0.84, colour="red", linetype="dashed", size = 1)+
+  xlab('Removal data')+
+  scale_y_continuous(breaks = seq(0,1, by = 0.02))+
+  theme(axis.title.x =element_text(size=12), axis.title.y=element_text(size=12))+
+  theme(axis.text.x =element_text(size=12,angle = 45, hjust = 0.5, vjust = 0.5), axis.text.y=element_text(size=12))
