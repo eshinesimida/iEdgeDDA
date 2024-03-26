@@ -1,9 +1,9 @@
-# iEdgeDDA: integrated edge information and pathway topology for drug-disease associations
+# iEdgePathDDA: integrated edge information and pathway topology for drug-disease associations
 
 iEdgeDDA contains the basic R functions and sample data for running the iEdgeDDA algorithm. After installing and loading the package, users will be able to explore the framework of iEdgeDDA
 
 
-# More about iEdgeDDA
+# More about iEdgePathDDA
 The iEdgeDDA is a novel tool used to identify the potentail candidate drugs for cancers based on edge information and pathway topology.
 
 # Getting started
